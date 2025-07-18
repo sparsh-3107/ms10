@@ -853,9 +853,10 @@
 .colorBtn:hover {
   transform: scale(1.2);
 }
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+
+#doodleCanvas {
+  touch-action: none;
+  cursor: crosshair;
 }
 
   </style>
@@ -910,22 +911,7 @@
   </div>
   <p id="colorMessage" style="margin-top: 2rem; font-size: 1.3rem; font-style: italic; color: #cc3366;"></p>
 </div>
-<!-- 🌠 Zodiac Compatibility -->
-<div class="section">
-  <p style="font-size: 1.5rem;">🌠 Our Zodiac Stars</p>
-  <p style="margin-top: 1rem;">Zodiac signs say a lot... but we say forever 💫</p>
-  <div style="display: flex; justify-content: center; gap: 3rem; margin-top: 2rem; flex-wrap: wrap;">
-    <div style="text-align: center;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Leo.svg/120px-Leo.svg.png" width="80" style="animation: pulse 2s infinite;" />
-      <p><strong>Sparsh</strong><br/>♌ Leo</p>
-    </div>
-    <div style="text-align: center;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Scorpio.svg/120px-Scorpio.svg.png" width="80" style="animation: pulse 2s infinite;" />
-      <p><strong>Maya</strong><br/>♏ Scorpio</p>
-    </div>
-  </div>
-  <p style="margin-top: 2rem; font-size: 1.2rem; font-style: italic; color: #cc3366;">Leo & Scorpio – A cosmic dance of fire and mystery 🔥💫</p>
-</div>
+
 
     <!-- 🖼️ Polaroid Photo Wall -->
    <div class="section">
@@ -1083,7 +1069,70 @@
     </div>
   </div>
 </div>
-    
+    <!-- 🎨 Love Doodle Pad -->
+<div class="section">
+  <p style="font-size: 1.5rem;">🎨 Love Doodle Pad</p>
+  <p style="margin-top: 0.5rem;">Draw with your finger or mouse... write your name, a heart, anything! 💗</p>
+  <canvas id="doodleCanvas" width="320" height="320" style="border: 2px dashed #ff80ab; border-radius: 1rem; margin-top: 1rem; background: #fff;"></canvas>
+  <br/>
+  <button onclick="clearDoodle()" class="animated-listen" style="margin-top: 1rem;">🧽 Clear Canvas</button>
+</div>
+<!-- 🔤 Alphabet of Us -->
+<div class="section">
+  <p style="font-size: 1.5rem;">🔤 The A-Z of Why I Love You</p>
+  <div style="margin-top: 1rem; font-size: 1.1rem; max-height: 300px; overflow-y: auto; padding: 1rem; background: #fff0f5; border-radius: 1rem;">
+    <ul style="list-style: none; padding: 0;">
+      <li><strong>A</strong> – Adorable beyond words 💖</li>
+      <li><strong>B</strong> – Beautiful inside and out ✨</li>
+      <li><strong>C</strong> – Caring like a soft hug 🫂</li>
+      <li><strong>D</strong> – Dreamy eyes that pause time 🥺</li>
+      <li><strong>E</strong> – Energetic and electric 🔥</li>
+      <li><strong>F</strong> – Funny in the cutest way 😂</li>
+      <li><strong>G</strong> – Gorgeous soul 💫</li>
+      <li><strong>H</strong> – Huggable forever 💞</li>
+      <li><strong>I</strong> – Irresistibly kind 💓</li>
+      <li><strong>J</strong> – Joyful spark in my life 🌟</li>
+      <li><strong>K</strong> – Kindhearted queen 👑</li>
+      <li><strong>L</strong> – Loving me like magic 💘</li>
+      <li><strong>M</strong> – Maya – my everything 🧿</li>
+      <li><strong>N</strong> – Noteworthy in every way 💌</li>
+      <li><strong>O</strong> – One in a million 🌍</li>
+      <li><strong>P</strong> – Pretty smile that melts me 🥰</li>
+      <li><strong>Q</strong> – Queen of my heart 👸</li>
+      <li><strong>R</strong> – Radiating love ☀️</li>
+      <li><strong>S</strong> – Sweetest soul ever 🍫</li>
+      <li><strong>T</strong> – Tender and true 💝</li>
+      <li><strong>U</strong> – Unconditionally loving 🤍</li>
+      <li><strong>V</strong> – Very precious to me 🥹</li>
+      <li><strong>W</strong> – Wonderful in every way 🌈</li>
+      <li><strong>X</strong> – XOXO (my hug machine) 🤗</li>
+      <li><strong>Y</strong> – You. Just YOU. 🫶</li>
+      <li><strong>Z</strong> – Zeal for life you gift me ⚡</li>
+    </ul>
+  </div>
+</div>
+<!-- 🎲 Love Dice -->
+<div class="section">
+  <p style="font-size: 1.5rem;">🎲 Roll the Love Dice</p>
+  <button onclick="rollLoveDice()" class="animated-listen" style="margin-top: 1.2rem;">🎲 Roll!</button>
+  <p id="diceResult" style="margin-top: 2rem; font-size: 1.3rem; font-style: italic; color: #cc3366;"></p>
+</div>
+<!-- 🎡 Spin the Love Wheel -->
+<div class="section">
+  <p style="font-size: 1.5rem;">🎡 Spin the Love Wheel</p>
+  <div style="margin-top: 1.2rem;">
+    <button onclick="spinLoveWheel()" class="animated-listen">🎡 Spin!</button>
+  </div>
+  <p id="wheelResult" style="margin-top: 2rem; font-size: 1.3rem; font-style: italic; color: #ff4081;"></p>
+</div>
+<!-- 🔐 Lock My Lips -->
+<div class="section">
+  <p style="font-size: 1.5rem;">🔐 Unlock My Lips</p>
+  <p style="margin-top: 1rem;">Tap to reveal something I never told you...</p>
+  <button onclick="unlockLips()" style="margin-top: 1rem;" class="animated-unlock">💋 Unlock</button>
+  <p id="lipSecret" style="margin-top: 2rem; font-style: italic; font-size: 1.2rem; color: #d63384;"></p>
+</div>
+
  <div class="section">
   <p style="font-size: 1.4rem;">🌎 Your Name in Every Language</p>
   <ul style="margin-top: 1rem; list-style: none; font-size: 1.2rem;">
@@ -1378,6 +1427,62 @@ function checkTears() {
   } else {
     tearZone.innerText = "";
   }
+}
+const doodleCanvas = document.getElementById("doodleCanvas");
+const ctxDoodle = doodleCanvas.getContext("2d");
+let isDoodling = false;
+
+doodleCanvas.addEventListener("mousedown", () => isDoodling = true);
+doodleCanvas.addEventListener("mouseup", () => isDoodling = false);
+doodleCanvas.addEventListener("mouseout", () => isDoodling = false);
+
+doodleCanvas.addEventListener("mousemove", (e) => {
+  if (!isDoodling) return;
+  const rect = doodleCanvas.getBoundingClientRect();
+  ctxDoodle.fillStyle = "#ff80ab";
+  ctxDoodle.beginPath();
+  ctxDoodle.arc(e.clientX - rect.left, e.clientY - rect.top, 4, 0, Math.PI * 2);
+  ctxDoodle.fill();
+});
+
+function clearDoodle() {
+  ctxDoodle.clearRect(0, 0, doodleCanvas.width, doodleCanvas.height);
+}
+function rollLoveDice() {
+  const outcomes = [
+    "You win... one virtual kiss 😘",
+    "I owe you a cuddle 🫂",
+    "You get to name our next date 💘",
+    "You’re officially the cutest human alive 🧸",
+    "You just made my heart skip 😍",
+    "One heart-touching voice note coming your way 🔊"
+  ];
+  const result = outcomes[Math.floor(Math.random() * outcomes.length)];
+  document.getElementById("diceResult").innerText = result;
+}
+function spinLoveWheel() {
+  const wheelOptions = [
+    "💋 One sweet kiss from me!",
+    "💬 I’ll tell you a new reason I love you.",
+    "🎶 You pick the next song we dance to.",
+    "🎥 Movie night on your rules!",
+    "📝 I’ll write you a letter tonight.",
+    "💖 You get endless cuddles today!",
+    "🌚 You can unbox me!"
+  ];
+  const result = wheelOptions[Math.floor(Math.random() * wheelOptions.length)];
+  document.getElementById("wheelResult").innerText = result;
+}
+function unlockLips() {
+  const secrets = [
+    "I sometimes reread our chats just to smile again 💌",
+    "Every time you say my name, my world softens 🫠",
+    "You’re the first person I want to talk to, every day 💗",
+    "Even when I’m quiet, I’m always loving you 🌙",
+    "I still remember the moment I fell for you 💘"
+  ];
+  const msg = secrets[Math.floor(Math.random() * secrets.length)];
+  document.getElementById("lipSecret").innerText = msg;
 }
 
 function startHeartScan() {
