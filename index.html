@@ -854,10 +854,6 @@
   transform: scale(1.2);
 }
 
-#doodleCanvas {
-  touch-action: none;
-  cursor: crosshair;
-}
 
   </style>
 </head>
@@ -1069,14 +1065,7 @@
     </div>
   </div>
 </div>
-    <!-- 🎨 Love Doodle Pad -->
-<div class="section">
-  <p style="font-size: 1.5rem;">🎨 Love Doodle Pad</p>
-  <p style="margin-top: 0.5rem;">Draw with your finger or mouse... write your name, a heart, anything! 💗</p>
-  <canvas id="doodleCanvas" width="320" height="320" style="border: 2px dashed #ff80ab; border-radius: 1rem; margin-top: 1rem; background: #fff;"></canvas>
-  <br/>
-  <button onclick="clearDoodle()" class="animated-listen" style="margin-top: 1rem;">🧽 Clear Canvas</button>
-</div>
+
 <!-- 🔤 Alphabet of Us -->
 <div class="section">
   <p style="font-size: 1.5rem;">🔤 The A-Z of Why I Love You</p>
@@ -1428,26 +1417,7 @@ function checkTears() {
     tearZone.innerText = "";
   }
 }
-const doodleCanvas = document.getElementById("doodleCanvas");
-const ctxDoodle = doodleCanvas.getContext("2d");
-let isDoodling = false;
 
-doodleCanvas.addEventListener("mousedown", () => isDoodling = true);
-doodleCanvas.addEventListener("mouseup", () => isDoodling = false);
-doodleCanvas.addEventListener("mouseout", () => isDoodling = false);
-
-doodleCanvas.addEventListener("mousemove", (e) => {
-  if (!isDoodling) return;
-  const rect = doodleCanvas.getBoundingClientRect();
-  ctxDoodle.fillStyle = "#ff80ab";
-  ctxDoodle.beginPath();
-  ctxDoodle.arc(e.clientX - rect.left, e.clientY - rect.top, 4, 0, Math.PI * 2);
-  ctxDoodle.fill();
-});
-
-function clearDoodle() {
-  ctxDoodle.clearRect(0, 0, doodleCanvas.width, doodleCanvas.height);
-}
 function rollLoveDice() {
   const outcomes = [
     "You win... one virtual kiss 😘",
