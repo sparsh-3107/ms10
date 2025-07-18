@@ -854,6 +854,28 @@
   transform: scale(1.2);
 }
 
+.dice {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/2/2c/Alea_1.png') center/contain no-repeat;
+  transition: transform 1s ease-in-out;
+}
+.wheel {
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 10px solid #ff80ab;
+  background: conic-gradient(
+    #ffd700 0% 20%, 
+    #ffb6c1 20% 40%, 
+    #ff69b4 40% 60%, 
+    #ffcccb 60% 80%, 
+    #ffa07a 80% 100%
+  );
+  transition: transform 3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
 
   </style>
 </head>
@@ -1100,20 +1122,28 @@
     </ul>
   </div>
 </div>
-<!-- 🎲 Love Dice -->
-<div class="section">
-  <p style="font-size: 1.5rem;">🎲 Roll the Love Dice</p>
-  <button onclick="rollLoveDice()" class="animated-listen" style="margin-top: 1.2rem;">🎲 Roll!</button>
-  <p id="diceResult" style="margin-top: 2rem; font-size: 1.3rem; font-style: italic; color: #cc3366;"></p>
-</div>
 <!-- 🎡 Spin the Love Wheel -->
 <div class="section">
   <p style="font-size: 1.5rem;">🎡 Spin the Love Wheel</p>
-  <div style="margin-top: 1.2rem;">
-    <button onclick="spinLoveWheel()" class="animated-listen">🎡 Spin!</button>
+  <div style="margin-top: 1.5rem; position: relative;">
+    <div id="wheel" class="wheel"></div>
+    <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); font-size: 2rem;">🔽</div>
   </div>
+  <button onclick="spinLoveWheel()" class="animated-listen" style="margin-top: 2rem;">🎡 Spin!</button>
   <p id="wheelResult" style="margin-top: 2rem; font-size: 1.3rem; font-style: italic; color: #ff4081;"></p>
 </div>
+
+<!-- 🎡 Spin the Love Wheel -->
+<div class="section">
+  <p style="font-size: 1.5rem;">🎡 Spin the Love Wheel</p>
+  <div style="margin-top: 1.5rem; position: relative;">
+    <div id="wheel" class="wheel"></div>
+    <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); font-size: 2rem;">🔽</div>
+  </div>
+  <button onclick="spinLoveWheel()" class="animated-listen" style="margin-top: 2rem;">🎡 Spin!</button>
+  <p id="wheelResult" style="margin-top: 2rem; font-size: 1.3rem; font-style: italic; color: #ff4081;"></p>
+</div>
+
 <!-- 🔐 Lock My Lips -->
 <div class="section">
   <p style="font-size: 1.5rem;">🔐 Unlock My Lips</p>
@@ -1419,30 +1449,65 @@ function checkTears() {
 }
 
 function rollLoveDice() {
-  const outcomes = [
-    "You win... one virtual kiss 😘",
-    "I owe you a cuddle 🫂",
-    "You get to name our next date 💘",
-    "You’re officially the cutest human alive 🧸",
-    "You just made my heart skip 😍",
-    "One heart-touching voice note coming your way 🔊"
-  ];
-  const result = outcomes[Math.floor(Math.random() * outcomes.length)];
-  document.getElementById("diceResult").innerText = result;
+  const dice = document.getElementById("diceCube");
+  const sides = 6;
+  const roll = Math.floor(Math.random() * sides) + 1;
+
+  // Animate with rotation
+  dice.style.transform = `rotate(${360 + Math.random() * 360}deg)`;
+
+  // Update image after animation
+  setTimeout(() => {
+    dice.style.backgroundImage = `url('https://upload.wikimedia.org/wikipedia/commons/${[
+      "",
+      "2/2c/Alea_1.png",
+      "b/b8/Alea_2.png",
+      "2/2f/Alea_3.png",
+      "8/8d/Alea_4.png",
+      "5/55/Alea_5.png",
+      "f/f4/Alea_6.png"
+    ][roll]}')`;
+
+    const results = [
+      "💋 A kiss is coming your way!",
+      "🫂 You win a hug!",
+      "💌 I’ll send you a love letter.",
+      "🎶 You get to choose a song!",
+      "💖 I’ll remind you why I love you.",
+      "🧸 You win the cutest award!"
+    ];
+    document.getElementById("diceResult").innerText = results[roll - 1];
+  }, 1000);
 }
+ 
+let spinning = false;
 function spinLoveWheel() {
-  const wheelOptions = [
+  if (spinning) return;
+  spinning = true;
+
+  const wheel = document.getElementById("wheel");
+  const output = document.getElementById("wheelResult");
+
+  const options = [
     "💋 One sweet kiss from me!",
-    "💬 I’ll tell you a new reason I love you.",
-    "🎶 You pick the next song we dance to.",
-    "🎥 Movie night on your rules!",
-    "📝 I’ll write you a letter tonight.",
-    "💖 You get endless cuddles today!",
-    "🌚 You can unbox me!"
+    "💬 I’ll tell you a reason I love you.",
+    "🎶 You pick our next song.",
+    "🌚 You can unbox me!",
+    "🫂 You win a cuddle day!"
   ];
-  const result = wheelOptions[Math.floor(Math.random() * wheelOptions.length)];
-  document.getElementById("wheelResult").innerText = result;
+
+  const anglePerSegment = 360 / options.length;
+  const chosenIndex = Math.floor(Math.random() * options.length);
+  const stopAngle = 360 * 5 + (360 - chosenIndex * anglePerSegment - anglePerSegment / 2);
+
+  wheel.style.transform = `rotate(${stopAngle}deg)`;
+
+  setTimeout(() => {
+    output.innerText = options[chosenIndex];
+    spinning = false;
+  }, 3200);
 }
+
 function unlockLips() {
   const secrets = [
     "I sometimes reread our chats just to smile again 💌",
