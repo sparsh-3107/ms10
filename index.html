@@ -840,6 +840,23 @@
     opacity: 0;
   }
 }
+.colorBtn {
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+.colorBtn:hover {
+  transform: scale(1.2);
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
 
   </style>
 </head>
@@ -879,6 +896,36 @@
       <button id="voiceBtn">▶️ Play Voice Message</button>
       <audio id="voiceMsg" src="https://media.vocaroo.com/mp3/120RipGy1OQ0" type="audio/mpeg">></audio>
     </div>
+<!-- 🌈 Color My World -->
+<div class="section">
+  <p style="font-size: 1.5rem;">🌈 Color My World</p>
+  <p style="margin-top: 1rem;">Tap a color to reveal what you mean to me...</p>
+  <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+    <button onclick="revealColorMeaning('red')" style="background: red;" class="colorBtn">🔴</button>
+    <button onclick="revealColorMeaning('blue')" style="background: #00aaff;" class="colorBtn">🔵</button>
+    <button onclick="revealColorMeaning('yellow')" style="background: #ffcc00;" class="colorBtn">🟡</button>
+    <button onclick="revealColorMeaning('green')" style="background: #00cc88;" class="colorBtn">🟢</button>
+    <button onclick="revealColorMeaning('purple')" style="background: #cc66ff;" class="colorBtn">🟣</button>
+    <button onclick="revealColorMeaning('pink')" style="background: #ff80ab;" class="colorBtn">🌸</button>
+  </div>
+  <p id="colorMessage" style="margin-top: 2rem; font-size: 1.3rem; font-style: italic; color: #cc3366;"></p>
+</div>
+<!-- 🌠 Zodiac Compatibility -->
+<div class="section">
+  <p style="font-size: 1.5rem;">🌠 Our Zodiac Stars</p>
+  <p style="margin-top: 1rem;">Zodiac signs say a lot... but we say forever 💫</p>
+  <div style="display: flex; justify-content: center; gap: 3rem; margin-top: 2rem; flex-wrap: wrap;">
+    <div style="text-align: center;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Leo.svg/120px-Leo.svg.png" width="80" style="animation: pulse 2s infinite;" />
+      <p><strong>Sparsh</strong><br/>♌ Leo</p>
+    </div>
+    <div style="text-align: center;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Scorpio.svg/120px-Scorpio.svg.png" width="80" style="animation: pulse 2s infinite;" />
+      <p><strong>Maya</strong><br/>♏ Scorpio</p>
+    </div>
+  </div>
+  <p style="margin-top: 2rem; font-size: 1.2rem; font-style: italic; color: #cc3366;">Leo & Scorpio – A cosmic dance of fire and mystery 🔥💫</p>
+</div>
 
     <!-- 🖼️ Polaroid Photo Wall -->
    <div class="section">
@@ -1460,6 +1507,17 @@ function mixPotion() {
   `;
 
   firework();
+}
+function revealColorMeaning(color) {
+  const msg = {
+    red: "❤️ Passion – You set my soul on fire.",
+    blue: "💙 Calm – Your presence is peace.",
+    yellow: "💛 Joy – You make life brighter.",
+    green: "💚 Growth – With you, I bloom.",
+    purple: "💜 Magic – You enchant my world.",
+    pink: "💗 Love – You color everything with love."
+  };
+  document.getElementById("colorMessage").innerText = msg[color] || "";
 }
 
 const storyPages = [
